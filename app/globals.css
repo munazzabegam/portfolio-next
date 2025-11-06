@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #000;
+  --text: #fff;
+  --gray: #b3b3b3;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3 {
+  letter-spacing: -0.03em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Section styling */
+.section {
+  min-height: 100vh;
+  padding: 6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-muted {
+  color: var(--gray);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: var(--gray);
+}
