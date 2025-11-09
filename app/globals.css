@@ -2,45 +2,255 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────── 🌗 THEME VARIABLES ─────────── */
 :root {
   --bg: #000;
   --text: #fff;
-  --gray: #b3b3b3;
+  --muted: #b3b3b3;
+  --accent1: #7b61ff;
+  --accent2: #d25eff;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.1);
 }
 
+[data-theme="light"] {
+  --bg: #f7f7fa;
+  --text: #111;
+  --muted: #666;
+  --accent1: #7b61ff;
+  --accent2: #d25eff;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --border: rgba(0, 0, 0, 0.1);
+}
+
+/* ─────────── 🧠 BASE STYLES ─────────── */
 body {
   background: var(--bg);
   color: var(--text);
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
-/* Typography */
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent1);
+  border-radius: 10px;
+}
+
+/* ─────────── 🔠 TYPOGRAPHY ─────────── */
 h1, h2, h3 {
+  font-weight: 800;
   letter-spacing: -0.03em;
-  font-weight: 900;
-  text-transform: uppercase;
 }
 
-/* Section styling */
+p {
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ─────────── 🌈 GRADIENTS ─────────── */
+.text-accent {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-accent {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+}
+
+.glow {
+  text-shadow: 0 0 15px var(--accent2), 0 0 30px var(--accent1);
+}
+
+/* ─────────── 🧭 SECTION LAYOUT ─────────── */
 .section {
   min-height: 100vh;
-  padding: 6rem 1rem;
+  padding: 7rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  transition: background 0.5s ease;
 }
 
-.text-muted {
-  color: var(--gray);
+/* Section backgrounds (unique) */
+.section-hero {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+}
+[data-theme="light"] .section-hero {
+  background: linear-gradient(to bottom right, #faf9ff, #e9e7ff);
 }
 
+.section-about {
+  background: linear-gradient(160deg, rgba(123,97,255,0.1), rgba(210,94,255,0.05));
+}
+
+.section-exp {
+  background: linear-gradient(180deg, #0d001b 0%, #1a0f2b 100%);
+}
+[data-theme="light"] .section-exp {
+  background: linear-gradient(180deg, #ffffff 0%, #f0e9ff 100%);
+}
+
+.section-skills {
+  background: radial-gradient(circle at 20% 30%, rgba(210,94,255,0.15), transparent 70%);
+}
+
+.section-achievements {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(123,97,255,0.06),
+    rgba(123,97,255,0.06) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.section-education {
+  background: radial-gradient(circle at top, rgba(123,97,255,0.1), transparent 70%);
+}
+
+.section-services {
+  background: linear-gradient(120deg, rgba(123,97,255,0.1), rgba(210,94,255,0.05));
+}
+
+.section-portfolio {
+  background: linear-gradient(to bottom, #0d001b, #000);
+}
+[data-theme="light"] .section-portfolio {
+  background: linear-gradient(to bottom, #fafafa, #f3f3ff);
+}
+
+.section-contact {
+  background: radial-gradient(circle at center, rgba(210,94,255,0.15), transparent 80%);
+}
+
+/* ─────────── 🧊 GLASS & CARDS ─────────── */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  transition: all 0.4s ease;
+}
+.glass:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(123, 97, 255, 0.2);
+}
+
+/* ─────────── 🌐 ANIMATIONS ─────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* ─────────── 💡 MISC ─────────── */
 .scroll-indicator {
   position: absolute;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.8rem;
-  color: var(--gray);
+  font-size: 0.85rem;
+  color: var(--muted);
+  opacity: 0.8;
+  animation: bounce 2s infinite;
 }
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -10px); }
+}
+
+/* ─────────── 📱 RESPONSIVE ─────────── */
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 1rem;
+  }
+  h1 { font-size: 10vw; }
+  h2 { font-size: 7vw; }
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-moveGradient {
+  background-size: 200% 200%;
+  animation: moveGradient 8s ease infinite;
+}
+
+@keyframes slowPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.animate-slowPulse {
+  animation: slowPulse 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 10s ease-in-out infinite;
+}
+
+
+
+
+/* Gradient divider pulse animation */
+@keyframes glowMove {
+  0%, 100% { opacity: 0.6; filter: blur(60px); }
+  50% { opacity: 0.9; filter: blur(90px); }
+}
+
+.section-divider {
+  animation: glowMove 8s ease-in-out infinite;
+}
+
+
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(210, 94, 255, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(123, 97, 255, 0.8));
+  }
+}
+
+.scroll-progress-bar {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* Floating Buttons Shared Animation */
+.floating-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.floating-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Optional glowing hover pulse */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(210,94,255,0.6), 0 0 30px rgba(123,97,255,0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(210,94,255,0.8), 0 0 50px rgba(123,97,255,0.5);
+  }
+}
+.scroll-to-top:hover {
+  animation: pulseGlow 2.5s infinite;
+}
+
+
+
