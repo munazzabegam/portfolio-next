@@ -30,7 +30,7 @@ export default function ExperienceSection() {
   const experiences = [
     {
       role: "Web Developer",
-      company: "Gd Tech Company",
+      company: "PRO GEE DEE VENTURES",
       period: "Apr 2025 – Present",
       desc: "Developing and maintaining client websites with optimized performance.",
     },
