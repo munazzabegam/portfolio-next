@@ -14,13 +14,27 @@
 }
 
 [data-theme="light"] {
-  --bg: #f7f7fa;
-  --text: #111;
-  --muted: #666;
+  --bg: #fafbfc;
+  --text: #1a1a1a;
+  --muted: #4a5568;
   --accent1: #7b61ff;
   --accent2: #d25eff;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --border: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --border: rgba(123, 97, 255, 0.2);
+}
+
+/* Light theme text improvements */
+[data-theme="light"] .text-gray-300,
+[data-theme="light"] .text-gray-400 {
+  color: #4a5568;
+}
+
+[data-theme="light"] .text-muted {
+  color: #64748b;
+}
+
+[data-theme="light"] .text-gray-200 {
+  color: #334155;
 }
 
 /* ─────────── 🧠 BASE STYLES ─────────── */
@@ -79,67 +93,36 @@ p {
   transition: background 0.5s ease;
 }
 
-/* Section backgrounds (unique) */
-.section-hero {
-  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-}
-[data-theme="light"] .section-hero {
-  background: linear-gradient(to bottom right, #faf9ff, #e9e7ff);
-}
-
-.section-about {
-  background: linear-gradient(160deg, rgba(123,97,255,0.1), rgba(210,94,255,0.05));
-}
-
-.section-exp {
-  background: linear-gradient(180deg, #0d001b 0%, #1a0f2b 100%);
-}
-[data-theme="light"] .section-exp {
-  background: linear-gradient(180deg, #ffffff 0%, #f0e9ff 100%);
-}
-
-.section-skills {
-  background: radial-gradient(circle at 20% 30%, rgba(210,94,255,0.15), transparent 70%);
-}
-
-.section-achievements {
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(123,97,255,0.06),
-    rgba(123,97,255,0.06) 10px,
-    transparent 10px,
-    transparent 20px
-  );
-}
-
-.section-education {
-  background: radial-gradient(circle at top, rgba(123,97,255,0.1), transparent 70%);
-}
-
-.section-services {
-  background: linear-gradient(120deg, rgba(123,97,255,0.1), rgba(210,94,255,0.05));
-}
-
-.section-portfolio {
-  background: linear-gradient(to bottom, #0d001b, #000);
-}
-[data-theme="light"] .section-portfolio {
-  background: linear-gradient(to bottom, #fafafa, #f3f3ff);
-}
-
+/* Section backgrounds - unified */
+.section-hero,
+.section-about,
+.section-exp,
+.section-skills,
+.section-achievements,
+.section-education,
+.section-services,
+.section-portfolio,
 .section-contact {
-  background: radial-gradient(circle at center, rgba(210,94,255,0.15), transparent 80%);
+  background: var(--bg);
 }
 
 /* ─────────── 🧊 GLASS & CARDS ─────────── */
 .glass {
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+[data-theme="light"] .glass {
+  box-shadow: 0 4px 20px rgba(123, 97, 255, 0.08);
 }
 .glass:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(123, 97, 255, 0.3);
+}
+[data-theme="light"] .glass:hover {
   box-shadow: 0 8px 30px rgba(123, 97, 255, 0.2);
 }
 
@@ -173,10 +156,59 @@ p {
 /* ─────────── 📱 RESPONSIVE ─────────── */
 @media (max-width: 768px) {
   .section {
-    padding: 5rem 1rem;
+    padding: 4rem 1rem;
+    min-height: auto;
   }
-  h1 { font-size: 10vw; }
-  h2 { font-size: 7vw; }
+  h1 { 
+    font-size: 10vw; 
+    line-height: 1.1;
+  }
+  h2 { 
+    font-size: 8vw; 
+    line-height: 1.2;
+    margin-bottom: 2rem !important;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Better mobile spacing */
+  .glass {
+    padding: 1.5rem !important;
+  }
+  
+  /* Mobile text sizes */
+  .text-5xl {
+    font-size: 2rem;
+  }
+  .text-4xl {
+    font-size: 1.75rem;
+  }
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+  .text-xl {
+    font-size: 1.125rem;
+  }
+  
+  /* Mobile scroll indicator */
+  .scroll-indicator {
+    bottom: 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 3rem 0.75rem;
+  }
+  h2 {
+    font-size: 7vw;
+    margin-bottom: 1.5rem !important;
+  }
 }
 
 @keyframes moveGradient {

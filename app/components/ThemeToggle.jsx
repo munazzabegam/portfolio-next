@@ -21,7 +21,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="floating-btn relative z-50 flex items-center justify-center w-12 h-12 rounded-full 
+      className="floating-btn relative z-50 flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full 
       bg-white/10 border border-white/20 backdrop-blur-xl 
       hover:bg-white/20 transition-all duration-300"
       aria-label="Toggle Theme"
