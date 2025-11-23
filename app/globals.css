@@ -115,6 +115,11 @@ p {
   transition: all 0.4s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+ /* for relative position in Education Section Edu Card */
+.relative {
+  position: relative;
+  width: 100%;
+}
 [data-theme="light"] .glass {
   box-shadow: 0 4px 20px rgba(123, 97, 255, 0.08);
 }
